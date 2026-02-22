@@ -26,6 +26,11 @@
 - Never commit or create branches unless explicitly asked.
 - Keep commit-ready changes clean and scoped.
 - Include concise change notes listing what changed and any follow-up actions.
+- When commit messages are requested/generated, include commit metadata with date, time, and user.
+
+- Use UTC timestamps and this footer format for generated commit messages:
+	- `Generated-by: <user>`
+	- `Generated-at: <YYYY-MM-DDTHH:MM:SSZ>`
 
 ## Secrets and environment
 - Never hardcode credentials, tokens, or secrets.
@@ -50,6 +55,11 @@
 - When PI scope introduces a new application, add a new repository reference for that application and include it in PI documentation and the root repository index.
 - Create GitHub issues for each scaffolding task in the relevant repository (existing or newly added repository).
 - Prefix each scaffolding issue title with `For PI#,` (for example, `For PI2, Scaffold WITPAE_Watcher watcher service`).
+
+## Todo clarification workflow requirement
+- If a user asks to "clarify" a todo item, keep the original parent todo item in place.
+- Add clarification details as subentries under that parent item rather than replacing or deleting the parent item.
+- Only mark the parent todo item as completed after the user confirms clarification for that item is finished.
 
 ## PI completion update requirement
 - When a PI is processed, the final step must be updating the root-level `README.md`.
