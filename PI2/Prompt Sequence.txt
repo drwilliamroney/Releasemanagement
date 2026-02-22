@@ -1,0 +1,12 @@
+create a new branch in drwilliamroney/releasemanagement called PI2 and start a draft PR.  Checkout this branch into the workspace
+
+build a TODO.md which lists the sequence of steps necessary to implement this PI.  For each step, include and dependencies
+
+add a link to the TODO in the README
+
+commit these changes to PI2, adding the TODO Pass1 as well
+[TODO Pass1 is what it came up with.  The timeline is it's estimate for human time, I think?]
+
+Do step 1 and update each task.  [committed and pushed output as TODO Pass2]
+
+Review step 2 and identify any questions that need to be answered.  Expand steps as necessary.  [committed and pushed output as TODO Pass3, it added DECISIONS_NEEDED, saved as Pass3]
