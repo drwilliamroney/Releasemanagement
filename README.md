@@ -15,6 +15,20 @@ flowchart TD
 	click F "#repo-witpae-monitor" "Go to repository index entry"
 ```
 
+## PI2
+
+### Summary
+- Initialized `PI2` release planning artifacts.
+- Target release metadata set to `TBD` in `PI2/README.md`.
+
+### Solution diagram (as it now looks)
+```mermaid
+flowchart TD
+	A[Solution]
+	A --> F[[WITPAE_Monitor - external repo]]
+	click F "#repo-witpae-monitor" "Go to repository index entry"
+```
+
 ## Referenced repositories
 
 | Repository name | Summary | README link |

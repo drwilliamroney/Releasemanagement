@@ -41,6 +41,16 @@
 	- Target release date: TBD
 	- Target release version tag: TBD
 
+## PI planning detail requirement
+- Any delivery detail such as adding a new application, service, or function must be documented in the corresponding PI planning document (`PI#/README.md`).
+- For implementation requests, update the active PI `README.md` with planned scope before or alongside code/documentation changes.
+
+## PI buildout workflow requirement
+- If a request asks to "buildout" a PI, first review the currently referenced GitHub repositories for the solution.
+- When PI scope introduces a new application, add a new repository reference for that application and include it in PI documentation and the root repository index.
+- Create GitHub issues for each scaffolding task in the relevant repository (existing or newly added repository).
+- Prefix each scaffolding issue title with `For PI#,` (for example, `For PI2, Scaffold WITPAE_Watcher watcher service`).
+
 ## PI completion update requirement
 - When a PI is processed, the final step must be updating the root-level `README.md`.
 - Ensure `README.md` contains a section for that PI with:
