@@ -62,11 +62,63 @@ WITPAE_Monitor outputs structured JSON to stdout containing:
 **Dependencies:** Step 1  
 **Description:** Create a new GitHub repository for the WITPAE_Watcher application.
 
+**📋 See [DECISIONS_NEEDED.md](DECISIONS_NEEDED.md) for detailed decision analysis and recommendations**
+
+**Questions to Answer:**
+1. **Programming Language/Runtime:** What language/platform should WITPAE_Watcher use?
+   - Options: C# (.NET), Python, Node.js, Go, Rust, C++
+   - Considerations:
+     - Must run on Windows (same as WITPAE_Monitor)
+     - Should support file system watching natively
+     - Must be able to invoke subprocess (WITPAE_Monitor)
+     - Ease of development and maintenance
+     - Community support and libraries available
+   - **Recommendation:** Python or C# (.NET) - both have excellent file watching libraries and subprocess support
+
+2. **Repository Structure:** What folders/files should be in the initial setup?
+   - Source code directory name: `src/`, `lib/`, `WITPAE_Watcher/`?
+   - Configuration examples location
+   - Documentation structure
+   - Test organization
+
+3. **License:** What license should be used?
+   - **Recommendation:** MIT License (matches WITPAE_Monitor for consistency)
+
+4. **Initial Features Scope:** What should be included in v1.0?
+   - Basic file watching only?
+   - Configuration file support from start?
+   - Logging from start?
+   - Service/daemon mode or console app only?
+
+5. **Build/Packaging:** How will the application be distributed?
+   - Standalone executable?
+   - Requires runtime installation?
+   - Installer or manual deployment?
+
 **Tasks:**
+- [ ] **Decision:** Choose programming language/runtime (document rationale)
+- [ ] **Decision:** Define initial repository structure
 - [ ] Create new repository: `drwilliamroney/WITPAE_Watcher`
-- [ ] Initialize with README, LICENSE, and .gitignore
+- [ ] Initialize with README (include purpose, requirements, quick start placeholder)
+- [ ] Add LICENSE file (MIT recommended)
+- [ ] Add appropriate .gitignore for chosen language
 - [ ] Add repository description: "File system watcher for WITPAE game saves that triggers turn data extraction"
-- [ ] Set up basic repository structure (src, docs, tests folders)
+- [ ] Set repository topics/tags: `witpae`, `file-watcher`, `game-automation`, `turn-based`
+- [ ] Create initial folder structure:
+  - [ ] Source code directory
+  - [ ] `docs/` directory
+  - [ ] `tests/` directory
+  - [ ] `config/` directory for example configurations
+- [ ] Add CONTRIBUTING.md with contribution guidelines
+- [ ] Add initial README.md sections:
+  - [ ] Project description
+  - [ ] Prerequisites/requirements
+  - [ ] Installation (placeholder)
+  - [ ] Configuration (placeholder)
+  - [ ] Usage (placeholder)
+  - [ ] License reference
+- [ ] **Optional:** Set up branch protection for main branch
+- [ ] **Optional:** Create initial project board for issue tracking
 
 ---
 
