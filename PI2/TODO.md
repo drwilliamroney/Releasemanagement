@@ -12,11 +12,49 @@ Build WITPAE_Watcher application to monitor game save directory and invoke WITPA
 **Description:** Review WITPAE_Monitor repository to understand its API, input/output formats, and integration points.
 
 **Tasks:**
-- [ ] Read WITPAE_Monitor README and documentation
-- [ ] Identify WITPAE_Monitor entry points and invocation methods
-- [ ] Document WITPAE_Monitor's expected input format
-- [ ] Document WITPAE_Monitor's output structure
-- [ ] Identify game save file format and turn completion indicators
+- [x] Read WITPAE_Monitor README and documentation
+- [x] Identify WITPAE_Monitor entry points and invocation methods
+- [x] Document WITPAE_Monitor's expected input format
+- [x] Document WITPAE_Monitor's output structure
+- [x] Identify game save file format and turn completion indicators
+
+**Findings:**
+
+#### Entry Points & Invocation
+- **Executable:** `witpae_monitor.exe` (command-line tool)
+- **Usage:** `witpae_monitor "path/to/file.pws"`
+- **Single argument:** Full path to a `.pws` save file
+- **Platform:** Windows x86 (32-bit) only
+- **Dependencies:** Requires `pwsdll.dll` and `pwsdll7.dll` in PATH
+
+#### Input Format
+- **File type:** `.pws` (binary scenario save files)
+- **Location:** Game SAVE directory (e.g., `C:\Matrix Games\War in the Pacific Admiral's Edition\SAVE\`)
+- **Naming pattern:** `wpae###.pws` where ### is a sequential number
+- **Parser:** Uses pwsdll.dll to read binary format
+
+#### Output Structure (JSON)
+WITPAE_Monitor outputs structured JSON to stdout containing:
+- **gameturn:** Current turn number (integer)
+- **gameinfo:** Scenario comment/timestamp
+- **airgroups:** Array of air units with status
+- **taskgroups:** Array of naval task forces
+- **minefields:** Array of minefield positions
+- **leaders:** Array of commanders
+- **ships:** Array of individual ships with damage, cargo, location
+- **shipclasses:** Array of ship class definitions
+- **pilots:** Array of pilot roster
+- **planes:** Array of aircraft types
+- **devices:** Array of equipment types
+- **locations:** Array of bases with facilities, units, supplies
+- **Done:** Completion flag (value: 1)
+
+#### Turn Completion Detection Strategy
+- Monitor `.pws` files in SAVE directory for modifications
+- File modification indicates potential turn processing
+- Parse JSON output to extract `gameturn` field
+- Track last processed turn number to detect new turns
+- File naming increments (wpae001.pws, wpae002.pws, etc.) may indicate save progression
 
 ---
 
