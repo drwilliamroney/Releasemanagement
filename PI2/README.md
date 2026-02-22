@@ -9,6 +9,9 @@
 - When a game turn is detected as ended, invoke `WITPAE_Monitor` to extract turn data.
 - Primary dependency repository: `WITPAE_Monitor`.
 
+## Implementation Plan
+See [TODO.md](TODO.md) for the detailed implementation sequence and dependencies.
+
 ## Buildout workflow checklist
 - [ ] Review currently referenced GitHub repositories used by the solution.
 - [ ] If PI2 introduces a new application, add a new repository reference for it.
