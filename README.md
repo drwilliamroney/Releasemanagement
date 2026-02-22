@@ -20,6 +20,7 @@ flowchart TD
 ### Summary
 - Initialized `PI2` release planning artifacts.
 - Target release metadata set to `TBD` in `PI2/README.md`.
+- Turn-boundary rule defined: `wpae002.pws` marks start of turn processing, and `wpae000.pws` marks end of turn processing (invoke extraction after stable-write checks).
 
 ### Solution diagram (as it now looks)
 ```mermaid

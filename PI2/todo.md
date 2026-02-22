@@ -1,12 +1,21 @@
 # PI2 Todo
 
-- [ ] Define turn-end detection criteria from WITPAE save artifacts (file names, timestamps, markers).
-- [ ] Decide runtime/platform for watcher app and document command contract to call `WITPAE_Monitor`.
-- [ ] Scaffold `WITPAE_Watcher` repository/app structure (config, logging, run script, README).
-- [ ] Implement directory watcher for the game save folder with debounce/retry handling.
-- [ ] Implement turn-end detector and guard against duplicate processing of the same turn.
-- [ ] Invoke `WITPAE_Monitor` on detected turn end and capture output/error telemetry.
-- [ ] Persist processing state (last processed turn/checksum) for restart safety.
-- [ ] Add targeted tests for detection logic and monitor-invocation flow.
-- [ ] Update PI2 planning/docs and root solution diagram/index to include `WITPAE_Watcher`.
-- [ ] Create scaffolding issues in relevant repos with title prefix `For PI2, ...`.
+- [ ] Define turn-end detection rules for WITPAE saves (specific file patterns, stable-write timing window, and end-of-turn marker).
+	- [ ] File patterns: monitor `wpae002.pws` as the start-of-turn-processing signal and `wpae000.pws` as the end-of-turn-processing signal; ignore temp/lock/partial files (for example `*.tmp`, `*.part`, `~*`, and zero-byte placeholders).
+	- [ ] Stable-write window: treat a candidate turn as eligible only after no size or modified-time changes are observed for 10 seconds across all required artifacts; recheck up to 3 times with 2-second intervals before deferring to next file event.
+	- [ ] End-of-turn marker: require `wpae000.pws` write completion (after stable-write window) before triggering extraction; treat `wpae002.pws` as a precondition that confirms turn processing has started.
+	- [ ] Conflict handling: when markers disagree (for example save updated but report missing), do not invoke monitor; log reason as `incomplete_turn` and wait for the next debounce cycle.
+	- [ ] Idempotency key definition: define turn identity as `{slot-or-side}:{turn-number}:{primary-save-hash}` so repeated writes for the same completed turn are skipped safely.
+- [ ] Document the `WITPAE_Watcher` runtime choice and the `WITPAE_Monitor` invocation contract (arguments, working directory, expected output, exit-code handling).
+	- [ ] Runtime clarification: `WITPAE_Watcher` runtime is `Python 3`.
+	- [ ] Capture required Python baseline version in docs/config (set to `TBD` until finalized, e.g., `Python 3.11+`).
+	- [ ] Deployment layout clarification: `WITPAE_Watcher`, `WITPAE_Monitor`, and associated DLL dependencies are co-located in the same directory.
+	- [ ] Invocation contract update: watcher uses the shared directory as working directory so monitor executable and DLLs resolve without additional path configuration.
+- [ ] Scaffold `WITPAE_Watcher` with minimum structure: configuration, watcher service, process runner, logging setup, and README usage instructions.
+- [ ] Implement save-directory watching with debounce and retry so partially written files do not trigger processing.
+- [ ] Implement idempotent turn detection so a single completed turn is processed once even across rapid file-change events.
+- [ ] Execute `WITPAE_Monitor` when a turn is confirmed complete; persist stdout/stderr and surface failures with actionable logs.
+- [ ] Persist watcher state (last processed turn identifier/checksum and timestamp) to support safe restart without duplicate extraction.
+- [ ] Add targeted tests for turn detection and monitor invocation paths, including at least one duplicate-event scenario.
+- [ ] Update PI2 planning documentation to reflect final watcher scope and update root solution documentation/diagram as needed.
+- [ ] Create scaffolding issues in relevant repositories using required title prefix format: `For PI2, ...`.
