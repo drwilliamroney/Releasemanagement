@@ -34,3 +34,4 @@ flowchart TD
 | Repository name | Summary | README link |
 | --- | --- | --- |
 | <a id="repo-witpae-monitor"></a>WITPAE_Monitor | Command-line parser for War in the Pacific Admiral's Edition `.pws` scenario files that uses `pwsdll.dll` and emits structured JSON game/state entities for automation and integration workflows. | [README](https://github.com/drwilliamroney/WITPAE_Monitor/blob/main/README.md) |
+
